@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'CSV'
+
+ActiveRecord::Base.transaction do
+  Airport.destroy_all
+
+  airport_file_path = File.join Rails.root, 'us-airports.csv'
+  airports_created = 0
+  CSV.foreach(airport_file_path,
+              headers: :first_row,
+              header_converters: :symbol) do |row|
+    Airport.create(name: row[:name], airport_code: row[:iata_code])
+    airports_created += 1
+  end
+
+  "Airports created: #{airports_created}"
+end
