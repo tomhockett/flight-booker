@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  departure_id: one
+  destination_id: one
+  takeoff: 2021-07-25 17:26:00
+  durration: 1
+
+two:
+  departure_id: two
+  destination_id: two
+  takeoff: 2021-07-25 17:26:00
+  durration: 1
