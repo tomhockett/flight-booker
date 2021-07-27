@@ -9,14 +9,12 @@ require 'CSV'
 
 ActiveRecord::Base.transaction do
   Airport.destroy_all
-  Flight.destroy_all
+  # Flight.destroy_all
 
   airport_file_path = File.join Rails.root, 'us-airports.csv'
-  airports_created = 0
   CSV.foreach(airport_file_path,
               headers: :first_row,
               header_converters: :symbol) do |row|
     Airport.create(name: row[:name], airport_code: row[:iata_code]) if row[:iata_code].present?
-    airports_created += 1
   end
 end
