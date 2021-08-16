@@ -1,5 +1,7 @@
 <h1>Flights#index</h1>
 <p>Find me in app/views/flights/index.html.erb</p>
-
-<% @flights.each do |flight| %>
+<%= form_with url: "/flights", method: :get do |form| %>
+  <%= form.label "from_airport" %>
+  <%= form.select(:from_airport_id, options_for_select(@flights.map { |f| [f.description, f.id]})) %>
+  <%= form.submit %>
 <% end %>
